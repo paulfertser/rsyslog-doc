@@ -84,7 +84,10 @@ binary
 
    "string", "", "yes", "``$ActionOMProgBinary``"
 
-Full path and command line parameters of the external program to execute.
+Full path and command line parameters of the external program to execute. The
+arguments are split on spaces; if you need to embed a space, add double quotes
+to the very beginning and the end of the argument, at all other places the
+double quotes symbol is passed as is.
 
 In legacy config, it is **not possible** to specify command line parameters.
 
@@ -470,14 +473,14 @@ Example: command line arguments
 
 In the following example, logs will be sent to a program ``log.sh`` located
 in ``/path/to``. The program will receive the command line arguments
-``p1``, ``p2`` and ``--param3="value 3"``.
+``p1``, ``p2`` and ``--param3=value 3``.
 
 .. code-block:: none
 
    module(load="omprog")
 
    action(type="omprog"
-          binary="/path/to/log.sh p1 p2 --param3=\"value 3\""
+          binary="/path/to/log.sh p1 p2 \"--param3=value 3\""
           template="RSYSLOG_TraditionalFileFormat")
 
 
